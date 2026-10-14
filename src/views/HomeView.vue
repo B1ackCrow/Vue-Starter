@@ -1,69 +1,94 @@
 <script setup>
-import { ref } from 'vue'
-import AppInput from '../components/ui/AppInput.vue'
+import AppCard from '../components/ui/AppCard.vue'
 
-const name = ref('')
-const email = ref('')
-const password = ref('')
-const search = ref('')
+const products = [
+  {
+    id: 1,
+    name: 'Пицца Маргарита',
+    category: 'Пицца',
+    description: 'Томатный соус, моцарелла, свежий базилик.',
+    price: 890,
+    image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800'
+  },
+  {
+    id: 2,
+    name: 'Паста Карбонара',
+    category: 'Паста',
+    description: 'Спагетти, бекон, пармезан и сливочный соус.',
+    price: 750,
+    image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=800'
+  },
+  {
+    id: 3,
+    name: 'Стейк Рибай',
+    category: 'Основные блюда',
+    description: 'Мраморная говядина, специи и ароматные травы.',
+    price: 2450,
+    image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800'
+  }
+]
+
+function openProduct(product) {
+  console.log('Выбран товар:', product)
+}
 </script>
 
 <template>
   <main class="demo">
-    <h1>AppInput</h1>
+    <h1>AppCard</h1>
 
-    <AppInput
-        v-model="name"
-        label="Имя"
-        placeholder="Введите имя"
-        clearable
-    />
+    <div class="demo__grid">
+      <AppCard
+          v-for="product in products"
+          :key="product.id"
+          :image="product.image"
+          :image-alt="product.name"
+          :title="product.name"
+          :subtitle="product.category"
+          variant="elevated"
+          clickable
+          @click="openProduct(product)"
+      >
+        <p>{{ product.description }}</p>
 
-    <AppInput
-        v-model="email"
-        type="email"
-        label="Email"
-        placeholder="example@mail.com"
-        hint="Мы не передаём вашу почту третьим лицам"
-    />
-
-    <AppInput
-        v-model="password"
-        type="password"
-        label="Пароль"
-        placeholder="Введите пароль"
-        show-password-toggle
-        required
-    />
-
-    <AppInput
-        v-model="search"
-        type="search"
-        placeholder="Поиск..."
-        variant="filled"
-        clearable
-    />
-
-    <AppInput
-        label="Поле с ошибкой"
-        error="Это поле обязательно для заполнения"
-    />
-
-    <AppInput
-        label="Заблокированное поле"
-        model-value="Недоступно для редактирования"
-        disabled
-    />
+        <template #footer>
+          <strong>{{ product.price }} ₽</strong>
+        </template>
+      </AppCard>
+    </div>
   </main>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .demo {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  max-width: 500px;
   padding: 40px;
+
+  h1 {
+    margin-bottom: 32px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 900px) {
+  .demo__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .demo {
+    padding: 20px;
+  }
+
+  .demo__grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
