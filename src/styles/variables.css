@@ -1,0 +1,31 @@
+:root {
+    /* Primary */
+    --color-primary: #312f2c;
+    --color-primary-hover: #484540;
+    --color-on-primary: #ffffff;
+
+    /* Secondary */
+    --color-secondary: #e5e5e5;
+    --color-secondary-hover: #d5d5d5;
+    --color-on-secondary: #212121;
+
+    /* Danger */
+    --color-danger: #dc3545;
+    --color-danger-hover: #bb2d3b;
+
+    /* General */
+    --color-text: #212121;
+    --color-surface-hover: #f0f0f0;
+
+    /* Buttons */
+    --button-radius: 8px;
+
+    /* Input */
+    --input-radius: 8px;
+    --input-border: #d5d5d5;
+    --input-background: #ffffff;
+    --input-filled-background: #f5f5f5;
+    --input-placeholder: #999999;
+    --input-icon-color: #777777;
+    --input-focus-ring: rgba(0, 0, 0, 0.08);
+}
